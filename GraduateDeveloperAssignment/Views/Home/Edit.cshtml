@@ -1,0 +1,58 @@
+﻿@model GraduateDeveloperAssignment.Models.Transaction
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <h4>Transaction</h4>
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(model => model.TransactionID)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.ClientID, "Client Name", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.Client.Name @Model.Client.Surname
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.TransactionTypeId, "Transaction Type", htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.TransactionType.TransactionTypeName
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Amount, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Model.Amount
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Comment, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            <input type="text" name="comment" value="@Model.Comment"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Save" class="btn btn-default" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to Home screen", "Index")
+</div>

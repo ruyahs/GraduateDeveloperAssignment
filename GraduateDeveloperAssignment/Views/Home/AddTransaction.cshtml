@@ -1,0 +1,55 @@
+﻿@model List<GraduateDeveloperAssignment.Models.Client>
+@{
+    ViewBag.Title = "AddTransaction";
+}
+
+<style>
+     select , input {
+    padding : 5px ;
+    margin : 5px ;
+    }
+    
+    form {
+    margin:20px ;
+    
+    }
+   
+</style>
+
+<form method="post" action="AddTransaction" enctype="multipart/form-data">
+    <div>
+        <label> Select a client  </label>
+        <select name="clientID" required>
+
+            @foreach (var item in Model)
+            {
+                <option value="@item.ClientID">@item.Name  @item.Surname</option>
+
+            }
+
+        </select>
+    </div>
+    <div>
+        <label> Select a Transaction Type </label>
+        <select name="transTypeID" required>
+            <option value="1">Debit</option>
+            <option value="2">Credit</option>
+        </select>
+    </div>
+
+    <div>
+        <label> Enter Amount </label>
+        <input type="number" name="amount" required />
+    </div>
+        
+
+    <div>
+        <label> Comment </label>
+        <input type="text" name="comment" />
+    </div>
+
+    <div>
+        <input type="submit" value="Confirm ? " />
+    </div>
+
+</form>

@@ -1,0 +1,67 @@
+﻿@model GraduateDeveloperAssignment.Controllers.viewData 
+@{
+    ViewBag.Title = "Index";
+}
+
+<style>
+    td , th  {
+    padding-right : 20px;    
+    }
+
+    form {
+    
+    padding: 15px ;
+    
+    }
+
+    select {
+    padding : 5px ;    
+    }
+    button {
+        padding : 5px ; 
+    }
+   
+
+
+
+
+</style>
+  
+    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+    {
+       <span>
+           <select name="clientID" >
+               @foreach (var item in Model.Clients)
+               {
+                    <option value="@item.ClientID">@item.Name  @item.Surname</option>                   
+
+               }
+           </select>
+            <input type="submit" value="OK"/>
+       </span>
+
+         }
+    <center>
+        <table>
+
+            <tr>
+                <th>Client Name </th>
+                <th>Transaction Type</th>
+                <th>Amount</th>
+                <th>Comment</th>                
+            </tr>
+
+            @foreach (var item in Model.Transactions)
+            {
+                <tr>
+                    <td>@item.Client.Name</td>
+                    <td>@item.TransactionType.TransactionTypeName</td>
+                    <td>@item.Amount</td>
+                    <td>@item.Comment  </td>
+                    <td>|@Html.ActionLink("Change", "Edit" ,new {id = @item.TransactionID })</td>
+                </tr>
+            }
+        </table>
+    </center>
+
+
